@@ -1,0 +1,69 @@
+# Tabela Completa — Códigos de Status HTTP (IANA + RFCs + Extensões)
+
+|  Código | Nome                            | Categoria              | Explicação breve                         | Exemplo de uso                                                                            |
+| ------: | ------------------------------- | ---------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------- |
+|     100 | Continue                        | 1xx — Informacional    | Parte inicial recebida, pode continuar.  | Enviado quando o cliente envia um upload grande e o servidor sinaliza que pode continuar. |
+|     101 | Switching Protocols             | 1xx — Informacional    | Trocando protocolo conforme pedido.      | Ao mudar de HTTP para WebSocket.                                                          |
+|     102 | Processing                      | 1xx — Informacional    | Processando (WebDAV).                    | Usado em operações demoradas WebDAV.                                                      |
+|     103 | Early Hints                     | 1xx — Informacional    | Envia cabeçalhos antecipadamente.        | Enviado para o navegador pré-carregar recursos CSS antes da resposta final.               |
+|     200 | OK                              | 2xx — Sucesso          | Requisição bem-sucedida.                 | Ao retornar dados de uma API com sucesso.                                                 |
+|     201 | Created                         | 2xx — Sucesso          | Recurso criado com sucesso.              | Quando um usuário é cadastrado via POST.                                                  |
+|     202 | Accepted                        | 2xx — Sucesso          | Requisição aceita para processamento.    | Quando um job é enfileirado para processamento assíncrono.                                |
+|     203 | Non-Authoritative Information   | 2xx — Sucesso          | Metadados alterados por proxy/cache.     | Proxy retorna conteúdo alterado.                                                          |
+|     204 | No Content                      | 2xx — Sucesso          | Sem corpo na resposta.                   | Após deletar um recurso com sucesso.                                                      |
+|     205 | Reset Content                   | 2xx — Sucesso          | Cliente deve resetar formulário/tela.    | Após envio bem-sucedido de formulário.                                                    |
+|     206 | Partial Content                 | 2xx — Sucesso          | Resposta parcial (Range).                | Download interrompido sendo retomado.                                                     |
+|     207 | Multi-Status                    | 2xx — Sucesso          | Múltiplos códigos em XML (WebDAV).       | Retorno de várias operações WebDAV.                                                       |
+|     208 | Already Reported                | 2xx — Sucesso          | Evita duplicação (WebDAV).               | Retorno de status em coleções WebDAV.                                                     |
+|     226 | IM Used                         | 2xx — Sucesso          | Usado com delta encoding.                | Reenvio apenas de partes alteradas de um documento.                                       |
+|     300 | Multiple Choices                | 3xx — Redirecionamento | Várias opções disponíveis.               | Um arquivo existe em múltiplos formatos (HTML, JSON).                                     |
+|     301 | Moved Permanently               | 3xx — Redirecionamento | URL movida permanentemente.              | Página antiga redireciona para nova.                                                      |
+|     302 | Found                           | 3xx — Redirecionamento | Redirecionamento temporário.             | Login redireciona temporariamente para /home.                                             |
+|     303 | See Other                       | 3xx — Redirecionamento | Redireciona via GET.                     | Após POST, redireciona para página de sucesso.                                            |
+|     304 | Not Modified                    | 3xx — Redirecionamento | Recurso não modificado (cache).          | Cliente usa versão em cache.                                                              |
+|     305 | Use Proxy                       | 3xx — Redirecionamento | Usar proxy específico (obsoleto).        | Quase nunca usado.                                                                        |
+|     306 | (Unused)                        | 3xx — Redirecionamento | Reservado.                               | Não utilizado.                                                                            |
+|     307 | Temporary Redirect              | 3xx — Redirecionamento | Redireciona sem mudar método.            | API POST redireciona temporariamente.                                                     |
+|     308 | Permanent Redirect              | 3xx — Redirecionamento | Redireciona permanente sem mudar método. | API movida permanentemente de URL.                                                        |
+|     400 | Bad Request                     | 4xx — Cliente          | Requisição inválida.                     | JSON malformado enviado para API.                                                         |
+|     401 | Unauthorized                    | 4xx — Cliente          | Requer autenticação.                     | Usuário acessa rota protegida sem token.                                                  |
+|     402 | Payment Required                | 4xx — Cliente          | Reservado para pagamentos.               | Conteúdo pago sem assinatura.                                                             |
+|     403 | Forbidden                       | 4xx — Cliente          | Acesso negado.                           | Usuário tenta acessar área admin sem permissão.                                           |
+|     404 | Not Found                       | 4xx — Cliente          | Recurso não encontrado.                  | URL não existe.                                                                           |
+|     405 | Method Not Allowed              | 4xx — Cliente          | Método HTTP não permitido.               | Envio de PUT em rota que só aceita GET.                                                   |
+|     406 | Not Acceptable                  | 4xx — Cliente          | Nenhum formato aceito.                   | API não suporta tipo pedido em Accept.                                                    |
+|     407 | Proxy Authentication Required   | 4xx — Cliente          | Autenticação de proxy necessária.        | Cliente precisa logar no proxy.                                                           |
+|     408 | Request Timeout                 | 4xx — Cliente          | Tempo de requisição esgotado.            | Cliente demorou a enviar dados.                                                           |
+|     409 | Conflict                        | 4xx — Cliente          | Conflito com o estado atual.             | Tentativa de atualizar dado já modificado.                                                |
+|     410 | Gone                            | 4xx — Cliente          | Recurso removido permanentemente.        | Link expirado.                                                                            |
+|     411 | Length Required                 | 4xx — Cliente          | Falta Content-Length.                    | Upload sem tamanho especificado.                                                          |
+|     412 | Precondition Failed             | 4xx — Cliente          | Falha em condição.                       | ETag não corresponde.                                                                     |
+|     413 | Payload Too Large               | 4xx — Cliente          | Corpo da requisição muito grande.        | Upload de arquivo maior que o limite.                                                     |
+|     414 | URI Too Long                    | 4xx — Cliente          | URI muito longa.                         | Query string muito extensa.                                                               |
+|     415 | Unsupported Media Type          | 4xx — Cliente          | Tipo de mídia não suportado.             | Upload em formato não aceito.                                                             |
+|     416 | Range Not Satisfiable           | 4xx — Cliente          | Range fora dos limites.                  | Download com range inválido.                                                              |
+|     417 | Expectation Failed              | 4xx — Cliente          | Falha na expectativa.                    | Cabeçalho Expect não suportado.                                                           |
+|     418 | I'm a teapot                    | 4xx — Cliente          | Código de brincadeira.                   | Servidor de café retorna que é um bule.                                                   |
+|     421 | Misdirected Request             | 4xx — Cliente          | Requisição para servidor errado.         | Proxy envia para host incorreto.                                                          |
+|     422 | Unprocessable Entity            | 4xx — Cliente          | Entidade inválida (WebDAV).              | Campos obrigatórios ausentes.                                                             |
+|     423 | Locked                          | 4xx — Cliente          | Recurso bloqueado.                       | Arquivo bloqueado em edição.                                                              |
+|     424 | Failed Dependency               | 4xx — Cliente          | Falha em dependência anterior.           | Erro em operação WebDAV encadeada.                                                        |
+|     425 | Too Early                       | 4xx — Cliente          | Servidor recusa processamento precoce.   | Proteção contra replay.                                                                   |
+|     426 | Upgrade Required                | 4xx — Cliente          | Requer atualização de protocolo.         | Servidor exige TLS.                                                                       |
+|     428 | Precondition Required           | 4xx — Cliente          | Cabeçalho condicional obrigatório.       | PUT sem If-Match.                                                                         |
+|     429 | Too Many Requests               | 4xx — Cliente          | Muitas requisições (rate limit).         | Cliente excede limite de API.                                                             |
+|     431 | Request Header Fields Too Large | 4xx — Cliente          | Cabeçalhos grandes demais.               | Cookies enormes.                                                                          |
+|     451 | Unavailable For Legal Reasons   | 4xx — Cliente          | Bloqueado por razões legais.             | Conteúdo bloqueado por ordem judicial.                                                    |
+|     500 | Internal Server Error           | 5xx — Servidor         | Erro interno genérico.                   | Exceção inesperada no backend.                                                            |
+|     501 | Not Implemented                 | 5xx — Servidor         | Funcionalidade não suportada.            | Método HTTP não implementado.                                                             |
+|     502 | Bad Gateway                     | 5xx — Servidor         | Resposta inválida do upstream.           | API intermediária falha.                                                                  |
+|     503 | Service Unavailable             | 5xx — Servidor         | Servidor indisponível.                   | Sobrecarga ou manutenção.                                                                 |
+|     504 | Gateway Timeout                 | 5xx — Servidor         | Timeout do gateway.                      | Proxy não recebeu resposta a tempo.                                                       |
+|     505 | HTTP Version Not Supported      | 5xx — Servidor         | Versão HTTP não suportada.               | Cliente usa HTTP 1.0 onde só há suporte a 1.1+.                                           |
+|     506 | Variant Also Negotiates         | 5xx — Servidor         | Negociação interna falhou.               | Erro em negociação de conteúdo.                                                           |
+|     507 | Insufficient Storage            | 5xx — Servidor         | Armazenamento insuficiente (WebDAV).     | Falta espaço para upload.                                                                 |
+|     508 | Loop Detected                   | 5xx — Servidor         | Loop detectado (WebDAV).                 | Recurso vinculado a si mesmo.                                                             |
+|     510 | Not Extended                    | 5xx — Servidor         | Extensões adicionais requeridas.         | Cliente precisa enviar cabeçalho extra.                                                   |
+|     511 | Network Authentication Required | 5xx — Servidor         | Autenticação de rede necessária.         | Wi‑Fi com portal de login.                                                                |
+| 520–527 | Cloudflare Errors               | Não oficial            | Erros específicos de proxy Cloudflare.   | Falhas genéricas no proxy.                                                                |
+|     599 | Network Connect Timeout Error   | Não oficial            | Timeout de rede (proxy).                 | Proxy sem resposta do servidor.                                                           |
